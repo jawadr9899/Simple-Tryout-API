@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Deno dependencies
+deno.lock
+
+# Environment variables
+.env
+
+# Deno configuration files
+deno.json
+
+# VSCode settings
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+out/
