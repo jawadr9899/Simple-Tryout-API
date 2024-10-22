@@ -37,9 +37,9 @@ api.put("/user/:id", async (ctx: Context) => {
     const result = db.queryEntries(`SELECT * FROM users WHERE id = ${id}`)[0];
     const body: User = await ctx.req.json();
     const toBeUpdated: string[] = [];
-
+   /*brute force approach: */ delete result?.id;
     for (const k in result) {
-        if (k === "id") continue; 
+        // altenate syntax for id removal: if (k === "id") continue; 
         if (result[k as keyof User] !== body[k as keyof User]) { 
             console.log(result[k as keyof User], body[k as keyof User]);
             toBeUpdated.push(`${k} = '${body[k as keyof User]}'`);
