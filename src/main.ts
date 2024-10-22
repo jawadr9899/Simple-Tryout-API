@@ -1,7 +1,6 @@
 /*
     [Un-optimized]
-    A simple user CRUD REST API written in HONO 🔥
-    With (Deno 2,Hono,SQLite)
+    A simple user CRUD REST API written in (Deno 2,Hono 🔥,SQLite)
 */
 
 import { Hono } from "hono";
