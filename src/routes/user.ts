@@ -34,18 +34,8 @@ api.get("/user/:id", (ctx: Context) => {
 });
 api.put("/user/:id", async (ctx: Context) => {
     const id = ctx.req.param("id");
-    const result = db.queryEntries(`SELECT * FROM users WHERE id = ${id}`)[0];
     const body: User = await ctx.req.json();
-    const toBeUpdated: string[] = [];
-   /*brute force approach: */ delete result?.id;
-    for (const k in result) {
-        // altenate syntax for id removal: if (k === "id") continue; 
-        if (result[k as keyof User] !== body[k as keyof User]) { 
-            console.log(result[k as keyof User], body[k as keyof User]);
-            toBeUpdated.push(`${k} = '${body[k as keyof User]}'`);
-        }
-    }
-    db.query(`UPDATE users SET ${toBeUpdated.join(",")} WHERE id = ${id};`);
+    db.query(`UPDATE users SET (${Object.keys(User).join()}) = (${Object.values(User).map(e => `'${e}'`).join()}) WHERE id = '${id}';`);
     return ctx.json({ success: true, result: { id, ...body } }, 201);
 });
 
